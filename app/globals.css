@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Amity University Design System ─── */
+:root {
+  --background: #FBF6EE;
+  --surface: #FFFCF6;
+  --stone: #DCCBAE;
+  --gold: #C99A46;
+  --maroon: #7A1F2B;
+  --ink: #17130F;
+  --muted-ink: #675D50;
+  --sky: #A9C4D8;
+  --night: #100D0B;
+  --amber-night: #E8A33D;
+
+  --font-sans: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-editorial: "Playfair Display", Georgia, serif;
+
+  --ease-amity: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out-amity: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --nav-height: 56px;
+  --nav-blur: 16px;
+
+  --z-base: 1;
+  --z-content: 10;
+  --z-overlay: 50;
+  --z-nav: 100;
+  --z-modal: 200;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-editorial { font-family: var(--font-editorial); }
+
+.text-hero {
+  font-size: clamp(3.5rem, 9vw, 9.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+
+.text-section-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted-ink);
+}
+
+::selection { background-color: var(--gold); color: var(--surface); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--stone); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+video { object-fit: cover; }
+
+.glass-warm {
+  background: rgba(251, 246, 238, 0.68);
+  backdrop-filter: blur(var(--nav-blur));
+  -webkit-backdrop-filter: blur(var(--nav-blur));
+  border: 1px solid rgba(122, 31, 43, 0.14);
+}
+
+.gradient-hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(16,13,11,0.25) 0%,
+    rgba(16,13,11,0.0) 40%,
+    rgba(122,31,43,0.06) 80%,
+    rgba(251,246,238,0.9) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+}
+
+@layer utilities {
+  .will-change-transform { will-change: transform; }
+  .will-change-opacity { will-change: opacity; }
+  .backface-hidden { backface-visibility: hidden; }
+  .gpu-accelerated { transform: translateZ(0); }
+}
